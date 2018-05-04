@@ -1,5 +1,5 @@
 {
-    "name": "acid-solutions/input-sanitizer",
+    "name": "okipa/php-data-sanitizer",
     "description": "Data sanitizer to auto-cast entries, convert empty strings to null, etc.",
     "keywords": [
         "okipa",
