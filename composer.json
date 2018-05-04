@@ -1,0 +1,53 @@
+{
+    "name": "acid-solutions/input-sanitizer",
+    "description": "Data sanitizer to auto-cast entries, convert empty strings to null, etc.",
+    "keywords": [
+        "okipa",
+        "package",
+        "php",
+        "data",
+        "clean",
+        "sanitize",
+        "sanitizer",
+        "laravel",
+        "codeigniter",
+        "fuelphp"
+    ],
+    "homepage": "https://github.com/Okipa/php-data-sanitizer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Arthur Lorent",
+            "email": "arthur.lorent@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Daniel Lucas",
+            "email": "daniel.chris.lucas@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^5.6 | ^7.0",
+        "illuminate/support": "~5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Okipa\\DataSanitizer\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Okipa\\DataSanitizer\\Laravel\\DataSanitizerServiceProvider"
+            ],
+            "aliases": {
+                "DataSanitizer": "Okipa\\DataSanitizer\\Laravel\\Facades\\DataSanitizer"
+            }
+        }
+    },
+    "minimum-stability": "stable"
+}
