@@ -2,6 +2,7 @@
 
 namespace Okipa\DataSanitizer\tests\Native\Facades;
 
+use Okipa\DataSanitizer\Native\Facades\DataSanitizer;
 use Okipa\DataSanitizer\Native\DataSanitizerBootstrapper;
 use PHPUnit_Framework_TestCase;
 
@@ -23,7 +24,7 @@ class DataSanitizerBootstrapperTest extends PHPUnit_Framework_TestCase
     public function testGetInstance()
     {
         $facade = new DataSanitizer();
-        $this->assertInstanceOf(\Okipa\DataSanitizer\Native\Facades\DataSanitizer::class, $facade->instance());
+        $this->assertInstanceOf(DataSanitizer::class, $facade->instance());
     }
 
     public function testCallMethods()
