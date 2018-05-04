@@ -55,11 +55,28 @@ class DataSanitizer
                 break;
         };
         // if the value is null or false, return the default value
-        if (isset($default) && !$return) {
+        if (isset($default) && ! $return) {
             return $default;
         }
 
         return $return;
+    }
+
+    /**
+     * Check if an item is JSON.
+     *
+     * @param $string Item to check
+     *
+     * @return bool True if the given item is JSON
+     */
+    private function isJson($string)
+    {
+        if (! is_string($string)) {
+            return false;
+        }
+        json_decode($string);
+
+        return (json_last_error() == JSON_ERROR_NONE);
     }
 
     /**
@@ -83,22 +100,5 @@ class DataSanitizer
         }
 
         return $return;
-    }
-
-    /**
-     * Check if an item is JSON.
-     *
-     * @param $string Item to check
-     *
-     * @return bool True if the given item is JSON
-     */
-    private function isJson($string)
-    {
-        if (!is_string($string)) {
-            return false;
-        }
-        json_decode($string);
-
-        return (json_last_error() == JSON_ERROR_NONE);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Okipa\DataSanitizer\Laravel;
 
-use Okipa\DataSanitizer\DataSanitizer;
 use Illuminate\Support\ServiceProvider;
+use Okipa\DataSanitizer\DataSanitizer;
 
 class DataSanitizerServiceProvider extends ServiceProvider
 {
@@ -22,7 +22,7 @@ class DataSanitizerServiceProvider extends ServiceProvider
      */
     protected function registerDataSanitizer()
     {
-        $this->app->singleton('data_sanitizer', function () {
+        $this->app->singleton('data_sanitizer', function() {
             return new DataSanitizer();
         });
     }

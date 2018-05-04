@@ -7,17 +7,17 @@ use Okipa\DataSanitizer\Native\DataSanitizerBootstrapper;
 class DataSanitizer
 {
     /**
-     * The DataSanitizer instance.
-     *
-     * @var \Okipa\DataSanitizer\DataSanitizer
-     */
-    protected $DataSanitizer;
-    /**
      * The Native BootStrapper instance.
      *
      * @var DataSanitizerBootstrapper
      */
     protected static $instance;
+    /**
+     * The DataSanitizer instance.
+     *
+     * @var \Okipa\DataSanitizer\DataSanitizer
+     */
+    protected $DataSanitizer;
 
     /**
      * Constructor.
@@ -31,32 +31,6 @@ class DataSanitizer
         }
 
         $this->DataSanitizer = $bootstrapper->createDataSanitizer();
-    }
-
-    /**
-     * Returns the DataSanitizer instance.
-     *
-     * @return \Okipa\DataSanitizer\DataSanitizer
-     */
-    public function getDataSanitizer()
-    {
-        return $this->DataSanitizer;
-    }
-
-    /**
-     * Creates a new Native Bootstrapper instance.
-     *
-     * @param DataSanitizerBootstrapper $bootstrapper
-     *
-     * @return \Okipa\DataSanitizer\Native\DataSanitizerBootstrapper
-     */
-    public static function instance(DataSanitizerBootstrapper $bootstrapper = null)
-    {
-        if (static::$instance === null) {
-            static::$instance = new static($bootstrapper);
-        }
-
-        return static::$instance;
     }
 
     /**
@@ -83,5 +57,31 @@ class DataSanitizer
             default:
                 return call_user_func_array([$instance, $method], $args);
         }
+    }
+
+    /**
+     * Creates a new Native Bootstrapper instance.
+     *
+     * @param DataSanitizerBootstrapper $bootstrapper
+     *
+     * @return \Okipa\DataSanitizer\Native\DataSanitizerBootstrapper
+     */
+    public static function instance(DataSanitizerBootstrapper $bootstrapper = null)
+    {
+        if (static::$instance === null) {
+            static::$instance = new static($bootstrapper);
+        }
+
+        return static::$instance;
+    }
+
+    /**
+     * Returns the DataSanitizer instance.
+     *
+     * @return \Okipa\DataSanitizer\DataSanitizer
+     */
+    public function getDataSanitizer()
+    {
+        return $this->DataSanitizer;
     }
 }
