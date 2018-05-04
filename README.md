@@ -1,4 +1,4 @@
-# Input Sanitizer
+# PHP Data Sanitizer
 
 [![Source Code](https://img.shields.io/badge/source-okipa/php--data--sanitizer-blue.svg)](https://github.com/Okipa/php-data-sanitizer)
 [![Latest Version](https://img.shields.io/github/release/okipa/php-data-sanitizer.svg?style=flat-square)](https://github.com/Okipa/php-data-sanitizer/releases)
