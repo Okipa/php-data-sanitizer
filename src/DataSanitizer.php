@@ -11,7 +11,7 @@ class DataSanitizer
      * @param mixed $default         Value to return by default if the input data is falsy
      * @param bool  $jsonDecodeAssoc Should json_decode return an associative array instead of StdClass?
      *
-     * @return mixedtestGetInstance
+     * @return array|bool|float|int|mixed|null
      */
     public function sanitize($entry, $default = null, $jsonDecodeAssoc = false)
     {
