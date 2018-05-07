@@ -11,6 +11,6 @@ class DataSanitizer extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'input_sanitizer';
+        return 'data_sanitizer';
     }
 }
