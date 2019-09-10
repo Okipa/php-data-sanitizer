@@ -3,14 +3,17 @@
 namespace Okipa\DataSanitizer\tests;
 
 use Okipa\DataSanitizer\DataSanitizer;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 
-class DataSanitizerTest extends PHPUnit_Framework_TestCase
+class DataSanitizerTest extends TestCase
 {
     private $DataSanitizer;
 
-    public function setUp()
+    /**
+     * This method is called before each test.
+     */
+    protected function setUp(): void
     {
         $this->DataSanitizer = new DataSanitizer();
     }
@@ -84,9 +87,7 @@ class DataSanitizerTest extends PHPUnit_Framework_TestCase
         $object = new stdClass;
         $object->one = 'true';
         $object->two = '756';
-
         $sanitized = $this->DataSanitizer->sanitize($object);
-
         $this->assertEquals('true', $sanitized->one);
         $this->assertEquals('756', $sanitized->two);
     }

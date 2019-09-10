@@ -4,16 +4,14 @@ namespace Okipa\DataSanitizer\tests\Native;
 
 use Okipa\DataSanitizer\DataSanitizer;
 use Okipa\DataSanitizer\Native\DataSanitizerBootstrapper;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class DataSanitizerBootstrapperTest extends PHPUnit_Framework_TestCase
+class DataSanitizerBootstrapperTest extends TestCase
 {
-    public function testIntantiate()
+    public function testInstantiate()
     {
         $bootstrapper = new DataSanitizerBootstrapper();
-
         $DataSanitizer = $bootstrapper->createDataSanitizer();
-
         $this->assertInstanceOf(DataSanitizer::class, $DataSanitizer);
     }
 }

@@ -1,4 +1,4 @@
-# PHP Data Sanitizer
+# Data sanitizer to auto-cast entries, convert empty strings to null, etc.
 
 [![Source Code](https://img.shields.io/badge/source-okipa/php--data--sanitizer-blue.svg)](https://github.com/Okipa/php-data-sanitizer)
 [![Latest Version](https://img.shields.io/github/release/okipa/php-data-sanitizer.svg?style=flat-square)](https://github.com/Okipa/php-data-sanitizer/releases)
@@ -11,7 +11,23 @@
 Often when receiving data from a client in an API or from a form request, you'll find yourself running the same data cleaning operations such as transforming `'false'` to the boolean `false`, converting `''` to `null` etc. This can be a pain.
 This package simplifies the process drastically.
 
-------------------------------------------------------------------------------------------------------------------------
+## Compatibility
+
+| Laravel version | PHP version | Package version |
+|---|---|---|
+| ^5.5 | ^7.2 | ^1.1 |
+| ^5.0 | ^5.6 | ^1.0 |
+
+## Table of Contents
+- [Installation](#installation)
+  - [Laravel users](#laravel-users)
+  - [Without Laravel](#without-laravel)
+- [Usage](#usage)
+- [Testing](#testing)
+- [Changelog](#changelog)
+- [Contributing](#contributing)
+- [Credits](#credits)
+- [Licence](#license)
 
 ## Installation
 
@@ -68,8 +84,6 @@ $sanitizedData = DataSanitizer::sanitize($data);
 // produces [false, 3, null]
 ```
 
-------------------------------------------------------------------------------------------------------------------------
-
 ## Usage
 
 The only public method in the package is `sanitize($data, $default = null, $jsonDecodeAssoc = false)`.
@@ -113,8 +127,27 @@ $data = json_decode($data, null, $jsonDecodeAssoc);
 // will decode your json as associative array (and as object if false)
 ```
 
-------------------------------------------------------------------------------------------------------------------------
+## Testing
 
-## Contributors
+``` bash
+composer test
+```
 
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Credits
+
+- [Arthur LORENT](https://github.com/okipa)
 - [Daniel Lucas](https://github.com/daniel-chris-lucas)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+

@@ -7,19 +7,17 @@ class DataSanitizer
     /**
      * Cleans given input and returns cleaned data.
      *
-     * @param mixed $entry           The data to clean
-     * @param mixed $default         Value to return by default if the input data is falsy
-     * @param bool  $jsonDecodeAssoc Should json_decode return an associative array instead of StdClass?
+     * @param mixed $entry          The data to clean
+     * @param mixed $default        Value to return by default if the input data is falsy
+     * @param bool $jsonDecodeAssoc Should json_decode return an associative array instead of StdClass?
      *
      * @return array|bool|float|int|mixed|null
      */
-    public function sanitize($entry, $default = null, $jsonDecodeAssoc = false)
+    public function sanitize($entry, $default = null, bool $jsonDecodeAssoc = false)
     {
-        // we remove useless spaces
         if (is_string($entry)) {
             $entry = trim($entry);
         }
-        // we sanitize the value
         switch (true) {
             case $entry === '':
             case $entry === 'null':
@@ -33,7 +31,7 @@ class DataSanitizer
                 $return = true;
                 break;
             case is_numeric($entry):
-                if (((int) $entry != $entry)) {
+                if ((int) $entry !== $entry) {
                     $return = doubleval($entry);
                 } else {
                     $return = intval($entry);
@@ -41,11 +39,9 @@ class DataSanitizer
                 break;
             case $this->isJson($entry):
                 $return = json_decode($entry, $jsonDecodeAssoc);
-
                 if (is_array($return)) {
-                    $return = (array) $this->sanitizeAll($return);
+                    $return = $this->sanitizeAll($return);
                 }
-
                 break;
             case is_array($entry):
                 $return = $this->sanitizeAll($entry);
@@ -54,7 +50,6 @@ class DataSanitizer
                 $return = $entry;
                 break;
         };
-        // if the value is null or false, return the default value
         if (isset($default) && ! $return) {
             return $default;
         }
@@ -65,18 +60,18 @@ class DataSanitizer
     /**
      * Check if an item is JSON.
      *
-     * @param $string Item to check
+     * @param mixed $string Item to check
      *
-     * @return bool True if the given item is JSON
+     * @return bool
      */
-    private function isJson($string)
+    protected function isJson($string): bool
     {
         if (! is_string($string)) {
             return false;
         }
         json_decode($string);
 
-        return (json_last_error() == JSON_ERROR_NONE);
+        return json_last_error() === JSON_ERROR_NONE;
     }
 
     /**
@@ -86,12 +81,10 @@ class DataSanitizer
      *
      * @return array
      */
-    private function sanitizeAll(array $entries)
+    protected function sanitizeAll(array $entries): array
     {
         $return = [];
-        // for each entry contained into the array
         foreach ($entries as $key => $entry) {
-            // we sanitize it
             if (is_array($entry)) {
                 $return[$key] = $this->sanitizeAll($entry);
             } else {

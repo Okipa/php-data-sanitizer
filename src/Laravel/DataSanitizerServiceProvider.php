@@ -22,7 +22,7 @@ class DataSanitizerServiceProvider extends ServiceProvider
      */
     protected function registerDataSanitizer()
     {
-        $this->app->singleton('data_sanitizer', function() {
+        $this->app->singleton('data_sanitizer', function () {
             return new DataSanitizer();
         });
     }
