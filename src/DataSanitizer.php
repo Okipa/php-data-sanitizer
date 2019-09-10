@@ -11,50 +11,93 @@ class DataSanitizer
      * @param mixed $default        Value to return by default if the input data is falsy
      * @param bool $jsonDecodeAssoc Should json_decode return an associative array instead of StdClass?
      *
-     * @return array|bool|float|int|mixed|null
+     * @return array|bool|float|int|null
      */
     public function sanitize($entry, $default = null, bool $jsonDecodeAssoc = false)
     {
-        if (is_string($entry)) {
-            $entry = trim($entry);
-        }
-        switch (true) {
-            case $entry === '':
-            case $entry === 'null':
-                $return = null;
-                break;
-            case $entry === 'false':
-                $return = false;
-                break;
-            case $entry === 'true':
-            case $entry === 'on':
-                $return = true;
-                break;
-            case is_numeric($entry):
-                if ((int) $entry !== $entry) {
-                    $return = doubleval($entry);
-                } else {
-                    $return = intval($entry);
-                }
-                break;
-            case $this->isJson($entry):
-                $return = json_decode($entry, $jsonDecodeAssoc);
-                if (is_array($return)) {
-                    $return = $this->sanitizeAll($return);
-                }
-                break;
-            case is_array($entry):
-                $return = $this->sanitizeAll($entry);
-                break;
-            default:
-                $return = $entry;
-                break;
-        };
+        $this->trimEntry($entry);
+        $return = $this->sanitizeFromType($entry, $jsonDecodeAssoc);
         if (isset($default) && ! $return) {
             return $default;
         }
 
         return $return;
+    }
+
+    /**
+     * @param mixed $entry
+     *
+     * @return void
+     */
+    protected function trimEntry(&$entry): void
+    {
+        if (is_string($entry)) {
+            $entry = trim($entry);
+        }
+    }
+
+    /**
+     * @param mixed $entry
+     * @param bool $jsonDecodeAssoc
+     *
+     * @return array|bool|float|int|null
+     */
+    protected function sanitizeFromType($entry, bool $jsonDecodeAssoc)
+    {
+        if ($this->isNull($entry)) {
+            return null;
+        } elseif ($this->isFalse($entry)) {
+            return false;
+        } elseif ($this->isTrue($entry)) {
+            return true;
+        } elseif (is_numeric($entry)) {
+            if ((int) $entry !== $entry) {
+                return doubleval($entry);
+            } else {
+                return intval($entry);
+            }
+        } elseif ($this->isJson($entry)) {
+            $decoded = json_decode($entry, $jsonDecodeAssoc);
+            if (is_array($decoded)) {
+                return $this->sanitizeAll($decoded);
+            } else {
+                return $decoded;
+            }
+        } elseif (is_array($entry)) {
+            return $this->sanitizeAll($entry);
+        } else {
+            return $entry;
+        }
+    }
+
+    /**
+     * @param mixed $entry
+     *
+     * @return bool
+     */
+    protected function isNull($entry): bool
+    {
+        return $entry === '' || $entry === 'null';
+    }
+
+    /**
+     * @param mixed $entry
+     *
+     * @return bool
+     */
+    protected function isFalse($entry): bool
+    {
+        return $entry === 'false';
+    }
+
+    /**
+     * @param mixed $entry
+     *
+     * @return bool
+     */
+    protected function isTrue($entry): bool
+    {
+        return $entry === 'true' || $entry === 'on';
     }
 
     /**
