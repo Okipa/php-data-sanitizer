@@ -34,7 +34,7 @@ This package simplifies the process drastically.
 - Install the package with composer :
 
 ```bash
-composer require okipa/php-data-sanitizer
+composer require "okipa/php-data-sanitizer:^1.1"
 ```
 
 ### Laravel users
