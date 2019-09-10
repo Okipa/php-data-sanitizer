@@ -13,7 +13,7 @@ This package simplifies the process drastically.
 
 ## Compatibility
 
-| Laravel version | PHP version | Package version |
+| Laravel version (optional) | PHP version | Package version |
 |---|---|---|
 | ^5.5 | ^7.2 | ^1.1 |
 | ^5.0 | ^5.6 | ^1.0 |
