@@ -2,7 +2,7 @@
 
 ## [1.1.2](https://github.com/Okipa/laravel-request-sanitizer/releases/tag/1.1.2)
 2019-09-12
-- Fixed missing return type in `sanitize()` and `sanitizeFromType()` methods PHPDOC.
+- Fixed missing `string` return type in `sanitize()` and `sanitizeFromType()` methods PHPDOC.
 
 ## [1.1.1](https://github.com/Okipa/laravel-request-sanitizer/releases/tag/1.1.1)
 2019-09-10
