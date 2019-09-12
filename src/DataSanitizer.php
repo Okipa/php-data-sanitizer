@@ -11,7 +11,7 @@ class DataSanitizer
      * @param mixed $default        Value to return by default if the input data is falsy
      * @param bool $jsonDecodeAssoc Should json_decode return an associative array instead of StdClass?
      *
-     * @return array|bool|float|int|null
+     * @return string|array|bool|float|int|null
      */
     public function sanitize($entry, $default = null, bool $jsonDecodeAssoc = false)
     {
@@ -40,7 +40,7 @@ class DataSanitizer
      * @param mixed $entry
      * @param bool $jsonDecodeAssoc
      *
-     * @return array|bool|float|int|null
+     * @return string|array|bool|float|int|null
      */
     protected function sanitizeFromType($entry, bool $jsonDecodeAssoc)
     {
