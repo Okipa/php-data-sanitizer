@@ -10,6 +10,14 @@ class DataSanitizerTest extends TestCase
 {
     private $DataSanitizer;
 
+    /**
+     * This method is called before each test.
+     */
+    protected function setUp(): void
+    {
+        $this->DataSanitizer = new DataSanitizer();
+    }
+
     public function testSanitizeTrimmingString()
     {
         $this->assertEquals('test', $this->DataSanitizer->sanitize(' test '));
@@ -123,13 +131,5 @@ class DataSanitizerTest extends TestCase
         $this->assertNull($sanitized['seven']['nested_one']);
         $this->assertEquals(3, $sanitized['seven']['nested_two']);
         $this->assertEquals('test', $sanitized['height']);
-    }
-
-    /**
-     * This method is called before each test.
-     */
-    protected function setUp(): void
-    {
-        $this->DataSanitizer = new DataSanitizer();
     }
 }
