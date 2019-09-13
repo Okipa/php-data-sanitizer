@@ -51,7 +51,7 @@ class DataSanitizer
         } elseif ($this->isTrue($entry)) {
             return true;
         } elseif (is_numeric($entry)) {
-            if ((int) $entry !== $entry) {
+            if (((int) $entry) - ((double) $entry) !== 0.0) {
                 return doubleval($entry);
             } else {
                 return intval($entry);

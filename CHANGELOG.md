@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.3](https://github.com/Okipa/laravel-request-sanitizer/releases/tag/1.1.3)
+2019-09-13
+- Fixed wrong sanitizing for doubles.
+
 ## [1.1.2](https://github.com/Okipa/laravel-request-sanitizer/releases/tag/1.1.2)
 2019-09-12
 - Fixed missing `string` return type in `sanitize()` and `sanitizeFromType()` methods PHPDOC.

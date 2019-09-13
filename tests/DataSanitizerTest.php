@@ -44,10 +44,24 @@ class DataSanitizerTest extends TestCase
         $this->assertNull($this->DataSanitizer->sanitize(''));
     }
 
-    public function testSanitizeTransformsStringToNumber()
+    public function testSanitizeInteger()
     {
-        $this->assertEquals(0, $this->DataSanitizer->sanitize('0'));
-        $this->assertEquals(2.07, $this->DataSanitizer->sanitize('2.07'));
+        $this->assertEquals(3, $this->DataSanitizer->sanitize('3'));
+    }
+
+    public function testSanitizeNegativeInteger()
+    {
+        $this->assertEquals(-3, $this->DataSanitizer->sanitize('-3'));
+    }
+
+    public function testSanitizeFloat()
+    {
+        $this->assertEquals(3.14, $this->DataSanitizer->sanitize('3.14'));
+    }
+
+    public function testSanitizeNegativeFloat()
+    {
+        $this->assertEquals(-3.14, $this->DataSanitizer->sanitize('-3.14'));
     }
 
     public function testSanitizeAcceptsDefaultParameter()
