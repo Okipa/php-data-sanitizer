@@ -125,6 +125,30 @@ class DataSanitizerTest extends TestCase
         $this->assertEquals('test', $sanitized['height']);
     }
 
+    public function testSanitizeFloatInString()
+    {
+        $array = [
+            'float_number'          => '3.14',
+            'negative_float_number' => '-3.14',
+        ];
+        $sanitized = $this->DataSanitizer->sanitize(json_encode($array), null, true);
+        $this->assertTrue(is_array($sanitized));
+        $this->assertEquals(3.14, $sanitized['float_number']);
+        $this->assertEquals(-3.14, $sanitized['negative_float_number']);
+    }
+
+    public function testSanitizeIntegerInString()
+    {
+        $array = [
+            'integer_number'          => '3',
+            'negative_integer_number' => '-3',
+        ];
+        $sanitized = $this->DataSanitizer->sanitize(json_encode($array), null, true);
+        $this->assertTrue(is_array($sanitized));
+        $this->assertEquals(3, $sanitized['integer_number']);
+        $this->assertEquals(-3, $sanitized['negative_integer_number']);
+    }
+
     /**
      * This method is called before each test.
      */
